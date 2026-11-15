@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>zeroed — GitHub</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --panel: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    padding: 2rem 1rem;
+  }
+  .container { max-width: 840px; margin: 0 auto; }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    font-size: 1.05rem;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+  }
+  .topbar .repo { color: var(--accent); font-weight: 600; }
+  .topbar .slash { opacity: .5; }
+
+  nav.tabs {
+    display: flex;
+    gap: 1.25rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: .5rem;
+    margin-bottom: 1.5rem;
+    font-size: .95rem;
+    flex-wrap: wrap;
+  }
+  nav.tabs a {
+    color: var(--muted);
+    text-decoration: none;
+    padding: .25rem .25rem;
+    border-bottom: 2px solid transparent;
+  }
+  nav.tabs a.active { color: var(--text); border-bottom-color: #f78166; }
+  nav.tabs a small {
+    display: block;
+    font-size: .7rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .card h2 {
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--muted);
+    margin: 0 0 .75rem;
+    font-weight: 600;
+  }
+
+  h1 { font-size: 1.5rem; margin: 0 0 1rem; }
+  .readme { display: flex; flex-direction: column; gap: .35rem; }
+  .readme .date { color: var(--muted); }
+  .secondary {
+    color: var(--muted);
+    font-size: .9em;
+    font-style: italic;
+    display: block;
+    margin-top: .1rem;
+  }
+
+  .clock {
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    align-items: baseline;
+  }
+  .clock .label { color: var(--muted); font-size: .85rem; }
+  .clock .value {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 1.2rem;
+    color: var(--text);
+  }
+
+  .countdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: .75rem;
+    text-align: center;
+  }
+  .countdown .unit {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: .75rem .25rem;
+  }
+  .countdown .num {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .countdown .name {
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--muted);
+    margin-top: .15rem;
+    line-height: 1.25;
+  }
+  .countdown .name small { display: block; text-transform: none; font-style: italic; }
+
+  footer {
+    color: var(--muted);
+    font-size: .8rem;
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="topbar">
+      <span>dontsmoke-653</span>
+      <span class="slash">/</span>
+      <span class="repo">zeroed</span>
+    </div>
+
+    <nav class="tabs">
+      <a href="#" class="active">Code<small>Kod</small></a>
+      <a href="#">Issues<small>Ärenden</small></a>
+      <a href="#">Pull requests<small>Pull-förfrågningar</small></a>
+      <a href="#">Agents<small>Agenter</small></a>
+    </nav>
+
+    <div class="card">
+      <h2>README.md</h2>
+      <h1># zeroed</h1>
+      <div class="readme">
+        <div>
+          My first day at GitHub.
+          <span class="secondary">Min första dag på GitHub.</span>
+        </div>
+        <div class="date">
+          Nov 15, 2026 4:33 PM · Stockholm, Sweden
+          <span class="secondary">15 nov 2026 16:33 · Stockholm, Sverige</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Current time · Aktuell tid (Stockholm)</h2>
+      <div class="clock">
+        <span class="value" id="now">—</span>
+        <span class="label">Europe/Stockholm · CET/CEST</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Time since first day · Tid sedan första dagen</h2>
+      <div class="countdown">
+        <div class="unit"><div class="num" id="d">0</div><div class="name">days<small>dagar</small></div></div>
+        <div class="unit"><div class="num" id="h">00</div><div class="name">hours<small>timmar</small></div></div>
+        <div class="unit"><div class="num" id="m">00</div><div class="name">minutes<small>minuter</small></div></div>
+        <div class="unit"><div class="num" id="s">00</div><div class="name">seconds<small>sekunder</small></div></div>
+      </div>
+    </div>
+
+    <footer>dontsmoke-653 · zeroed · main</footer>
+  </div>
+
+<script>
+  // Startmoment: 15 نوامبر 2026، 16:33 به وقت استکهلم (CET = UTC+1)
+  const START = new Date("2026-11-15T16:33:00+01:00").getTime();
+
+  const pad = n => String(n).padStart(2, "0");
+  const $ = id => document.getElementById(id);
+
+  const timeFmt = new Intl.DateTimeFormat("sv-SE", {
+    timeZone: "Europe/Stockholm",
+    dateStyle: "medium",
+    timeStyle: "medium"
+  });
+
+  function tick() {
+    const now = new Date();
+    $("now").textContent = timeFmt.format(now);
+
+    let diff = Date.now() - START;
+    diff = Math.abs(diff);
+    const sec = Math.floor(diff / 1000);
+    $("d").textContent = Math.floor(sec / 86400);
+    $("h").textContent = pad(Math.floor((sec % 86400) / 3600));
+    $("m").textContent = pad(Math.floor((sec % 3600) / 60));
+    $("s").textContent = pad(sec % 60);
+  }
+
+  tick();
+  setInterval(tick, 1000);
+</script>
+</body>
+</html>
